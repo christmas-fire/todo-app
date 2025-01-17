@@ -3,6 +3,12 @@ package handler
 import (
 	"github.com/christmas-fire/todo-app/pkg/service"
 	"github.com/gin-gonic/gin"
+
+	// swagger embed files
+	swaggerFiles "github.com/swaggo/files"     // swagger embed files
+	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
+
+	_ "github.com/christmas-fire/todo-app/docs"
 )
 
 type Handler struct {
@@ -15,6 +21,8 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	auth := router.Group("/auth")
 	{

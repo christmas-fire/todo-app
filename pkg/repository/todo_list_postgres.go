@@ -98,5 +98,4 @@ func (r *TodoListPostgres) Update(userId, listId int, input todo.UpdateListInput
 	_, err := r.db.Exec(query, args...)
 
 	return err
-
 }
